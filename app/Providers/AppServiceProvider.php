@@ -6,14 +6,18 @@ use App\Models\Chat;
 use App\Models\ChatMessage;
 use App\Models\Company;
 use App\Models\Notification;
+use App\Models\Project;
 use App\Models\SystemConfiguration;
+use App\Models\Task;
 use App\Models\User;
 use App\Policies\ChatPolicy;
 use App\Policies\CompanyPolicy;
 use App\Policies\DashboardPolicy;
 use App\Policies\NotificationPolicy;
+use App\Policies\ProjectPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\SystemConfigurationPolicy;
+use App\Policies\TaskPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
@@ -43,6 +47,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Notification::class, NotificationPolicy::class);
         Gate::policy(Chat::class, ChatPolicy::class);
         Gate::policy(ChatMessage::class, ChatPolicy::class);
+        Gate::policy(Project::class, ProjectPolicy::class);
+        Gate::policy(Task::class, TaskPolicy::class);
 
         // Dashboard policy — bound to a string key (no Eloquent model)
         Gate::define('viewStats', [DashboardPolicy::class, 'viewStats']);

@@ -42,20 +42,42 @@ class UserSeeder extends Seeder
             $admin->assignRole('admin');
         }
 
-        // User
-        $user = User::firstOrCreate(
-            ['email' => 'user@app.com'],
+        // Manajer Proyek — bisa melihat & mengelola semua proyek/tugas,
+        // tanpa jadi anggota (demonstrasi permission projects_view_all).
+        $projectManager = User::firstOrCreate(
+            ['email' => 'manajer@app.com'],
             [
-                'name' => 'Sample User',
+                'name' => 'Manajer Proyek',
                 'password' => Hash::make('password'),
-                'phone' => '021-1234568',
-                'position' => 'Staff',
+                'phone' => '021-1234569',
+                'position' => 'Manajer Proyek',
                 'is_active' => true,
                 'email_verified_at' => now(),
             ]
         );
-        if (!$user->hasRole('user')) {
-            $user->assignRole('user');
+        if (!$projectManager->hasRole('manajer proyek')) {
+            $projectManager->assignRole('manajer proyek');
+        }
+
+        // 3 User proyek — masing-masing pemilik 1 proyek
+        $projectUsers = [
+            ['email' => 'user1@app.com',  'name' => 'User 1',   'phone' => '0811-111111', 'position' => 'Frontend Developer'],
+            ['email' => 'user2@app.com',  'name' => 'User 2',   'phone' => '0811-222222', 'position' => 'Mobile Developer'],
+            ['email' => 'user3@app.com', 'name' => 'User 3',   'phone' => '0811-333333', 'position' => 'DevOps Engineer'],
+        ];
+
+        foreach ($projectUsers as $data) {
+            $u = User::firstOrCreate(
+                ['email' => $data['email']],
+                array_merge($data, [
+                    'password' => Hash::make('password'),
+                    'is_active' => true,
+                    'email_verified_at' => now(),
+                ])
+            );
+            if (!$u->hasRole('user')) {
+                $u->assignRole('user');
+            }
         }
     }
 }

@@ -69,6 +69,27 @@ class PermissionSeeder extends Seeder
             'chat_create',
             'chat_delete',
 
+            // Manajemen Tugas — Proyek
+            'projects_view',
+            'projects_view_all',
+            'projects_create',
+            'projects_update',
+            'projects_delete',
+            'projects_manage_members',
+            'projects_export_excel',
+            'projects_export_pdf',
+
+            // Manajemen Tugas — Tugas
+            'tasks_view',
+            'tasks_view_all',
+            'tasks_create',
+            'tasks_update',
+            'tasks_delete',
+            'tasks_assign',
+            'tasks_comment',
+            'tasks_export_excel',
+            'tasks_export_pdf',
+
             // Profile - Company Management
             'manage_own_company',
         ];

@@ -84,6 +84,7 @@ class RolePermissionService
                 ['name' => 'companies_delete',       'label' => 'Hapus Perusahaan'],
                 ['name' => 'companies_export_excel', 'label' => 'Export Excel Perusahaan'],
                 ['name' => 'companies_export_pdf',   'label' => 'Export PDF Perusahaan'],
+                ['name' => 'manage_own_company',     'label' => 'Kelola Perusahaan Sendiri'],
             ],
             'Konfigurasi System' => [
                 ['name' => 'configuration_view',         'label' => 'Lihat Konfigurasi'],
@@ -116,6 +117,25 @@ class RolePermissionService
                 ['name' => 'chat_view',   'label' => 'Lihat Chat'],
                 ['name' => 'chat_create', 'label' => 'Buat Chat'],
                 ['name' => 'chat_delete', 'label' => 'Hapus Chat'],
+            ],
+            'Manajemen Tugas' => [
+                ['name' => 'projects_view',           'label' => 'Lihat Proyek (yang diikuti)'],
+                ['name' => 'projects_view_all',       'label' => 'Lihat Semua Proyek'],
+                ['name' => 'projects_create',         'label' => 'Tambah Proyek'],
+                ['name' => 'projects_update',         'label' => 'Edit Proyek'],
+                ['name' => 'projects_delete',         'label' => 'Hapus Proyek'],
+                ['name' => 'projects_manage_members', 'label' => 'Kelola Anggota Proyek'],
+                ['name' => 'projects_export_excel',   'label' => 'Export Excel Proyek'],
+                ['name' => 'projects_export_pdf',     'label' => 'Export PDF Proyek'],
+                ['name' => 'tasks_view',              'label' => 'Lihat Tugas'],
+                ['name' => 'tasks_view_all',          'label' => 'Lihat Semua Tugas (lintas proyek)'],
+                ['name' => 'tasks_create',            'label' => 'Tambah Tugas'],
+                ['name' => 'tasks_update',            'label' => 'Edit Tugas'],
+                ['name' => 'tasks_delete',            'label' => 'Hapus Tugas'],
+                ['name' => 'tasks_assign',            'label' => 'Tugaskan Tugas'],
+                ['name' => 'tasks_comment',           'label' => 'Komentari Tugas'],
+                ['name' => 'tasks_export_excel',      'label' => 'Export Excel Tugas'],
+                ['name' => 'tasks_export_pdf',        'label' => 'Export PDF Tugas'],
             ],
         ];
 

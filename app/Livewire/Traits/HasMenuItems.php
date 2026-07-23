@@ -5,6 +5,7 @@ namespace App\Livewire\Traits;
 use App\Models\Chat;
 use App\Models\Company;
 use App\Models\Notification;
+use App\Models\Project;
 use App\Models\SystemConfiguration;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,7 @@ trait HasMenuItems
             'notifications_view' => Gate::allows('viewAny', Notification::class),
             'notifications_send' => Gate::allows('send', Notification::class),
             'chat_view'          => Gate::allows('viewAny', Chat::class),
+            'projects_view'      => Gate::allows('viewAny', Project::class),
             'configuration_view' => Gate::allows('viewAny', SystemConfiguration::class),
             'users_view'         => Gate::allows('viewAny', User::class),
             'roles_view'         => Gate::allows('viewAny', Role::class),
@@ -110,6 +112,16 @@ trait HasMenuItems
                 'route'  => 'chat.index',
                 'icon'   => 'chat',
                 'active' => $req->routeIs('chat.*'),
+            ];
+        }
+
+        // Manajemen Tugas
+        if ($perms['projects_view']) {
+            $items[] = [
+                'name'   => 'Manajemen Tugas',
+                'route'  => 'task-management.projects',
+                'icon'   => 'clipboard-check',
+                'active' => $req->routeIs('task-management.*'),
             ];
         }
 

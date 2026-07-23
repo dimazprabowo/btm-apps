@@ -189,3 +189,54 @@ if (!function_exists('upload_path')) {
             ->buildPath($feature, $segments, $originalName, $baseName);
     }
 }
+
+if (!function_exists('color_badge_class')) {
+    function color_badge_class(string $color): string
+    {
+        $map = [
+            'gray'   => 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
+            'blue'   => 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400',
+            'green'  => 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/20 dark:text-emerald-400',
+            'amber'  => 'bg-amber-100 text-amber-800 dark:bg-amber-900/20 dark:text-amber-400',
+            'red'    => 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400',
+            'indigo' => 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/20 dark:text-indigo-400',
+            'purple' => 'bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400',
+        ];
+
+        return $map[$color] ?? $map['gray'];
+    }
+}
+
+if (!function_exists('color_dot_class')) {
+    function color_dot_class(string $color): string
+    {
+        $map = [
+            'gray'   => 'bg-gray-400',
+            'blue'   => 'bg-blue-500',
+            'green'  => 'bg-emerald-500',
+            'amber'  => 'bg-amber-500',
+            'red'    => 'bg-red-500',
+            'indigo' => 'bg-indigo-500',
+            'purple' => 'bg-purple-500',
+        ];
+
+        return $map[$color] ?? $map['gray'];
+    }
+}
+
+if (!function_exists('color_gradient_class')) {
+    function color_gradient_class(string $color): string
+    {
+        $map = [
+            'blue'   => 'from-blue-500 to-blue-600',
+            'green'  => 'from-emerald-500 to-emerald-600',
+            'red'    => 'from-red-500 to-red-600',
+            'amber'  => 'from-amber-500 to-amber-600',
+            'indigo' => 'from-indigo-500 to-indigo-600',
+            'purple' => 'from-purple-500 to-purple-600',
+            'gray'   => 'from-gray-500 to-gray-600',
+        ];
+
+        return $map[$color] ?? $map['blue'];
+    }
+}

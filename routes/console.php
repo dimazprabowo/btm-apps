@@ -10,3 +10,6 @@ Artisan::command('inspire', function () {
 
 // Sapu file upload sementara (temp/*) yang gagal/tidak diproses worker.
 Schedule::command('uploads:cleanup-temp')->daily();
+
+// Kirim pengingat jatuh tempo tugas setiap hari pukul 08:00.
+Schedule::command('tasks:send-due-date-reminders')->dailyAt('08:00');
