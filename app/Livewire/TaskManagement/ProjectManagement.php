@@ -57,6 +57,19 @@ class ProjectManagement extends Component
         return ProjectStatus::options();
     }
 
+    public function create(): void
+    {
+        $this->authorize('create', Project::class);
+        $this->redirect(route('task-management.projects.create'), navigate: true);
+    }
+
+    public function edit(int $id): void
+    {
+        $project = Project::findOrFail($id);
+        $this->authorize('update', $project);
+        $this->redirect(route('task-management.projects.edit', $project), navigate: true);
+    }
+
     public function confirmDelete(int $id): void
     {
         $project = Project::findOrFail($id);

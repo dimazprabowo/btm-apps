@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="{{ $project->name }}">
     <x-slot name="header">
         <div class="flex items-center gap-2 text-lg sm:text-xl min-w-0">
             <a href="{{ route('task-management.projects') }}" wire:navigate x-data="{ loading: false }" @click="loading = true" @navigate-start.window="loading = true" @navigate-complete.window="loading = false" class="flex items-center gap-2 min-w-0 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200">

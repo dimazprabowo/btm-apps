@@ -251,10 +251,12 @@ class TaskService
     {
         $assigneeIds = $task->assignees()->pluck('users.id')->toArray();
         $reporterId = $task->reporter_id;
+        $ownerId = $task->project->owner_id;
 
         $ids = array_unique(array_merge(
             $assigneeIds,
             $reporterId ? [$reporterId] : [],
+            $ownerId ? [$ownerId] : [],
         ));
 
         $exclude = $excludeUserId ?? Auth::id();

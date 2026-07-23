@@ -21,6 +21,17 @@
                 </div>
 
                 <div>
+                    <x-input-label value="Pemilik Proyek" />
+                    <div class="mt-1 flex items-center gap-2 px-3 py-2 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-lg">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold text-xs">
+                            {{ strtoupper(substr($this->ownerName, 0, 2)) }}
+                        </div>
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $this->ownerName }}</span>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Pemilik proyek otomatis menjadi manajer dan tidak dapat diubah.</p>
+                </div>
+
+                <div>
                     <x-input-label for="description" value="Deskripsi" />
                     <textarea id="description" wire:model="description" rows="3" placeholder="Masukkan deskripsi proyek"
                         class="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"></textarea>

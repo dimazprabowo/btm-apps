@@ -263,8 +263,13 @@ class ProjectBoard extends Component
         }
     }
 
-    public function dropTask(int $taskId, int $statusId, TaskService $service): void
+    public function dropTask(?int $taskId, int $statusId, TaskService $service): void
     {
+        if ($taskId === null) {
+            $this->notifyError('ID tugas tidak valid.');
+            return;
+        }
+
         try {
             $task = Task::findOrFail($taskId);
             $this->authorize('update', $task);

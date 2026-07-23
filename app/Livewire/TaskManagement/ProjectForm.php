@@ -32,7 +32,7 @@ class ProjectForm extends Component
     {
         if ($project && $project->exists) {
             $this->authorize('update', $project);
-            $this->project = $project;
+            $this->project = $project->load('owner');
             $this->editMode = true;
             $this->projectId = $project->id;
             $this->code = $project->code;
@@ -81,6 +81,16 @@ class ProjectForm extends Component
     public function statusOptions(): array
     {
         return ProjectStatus::options();
+    }
+
+    #[Computed]
+    public function ownerName(): string
+    {
+        if ($this->editMode && $this->project) {
+            return $this->project->owner?->name ?? '-';
+        }
+
+        return auth()->user()?->name ?? '-';
     }
 
     #[Computed]

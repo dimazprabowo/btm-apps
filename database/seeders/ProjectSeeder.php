@@ -35,39 +35,43 @@ class ProjectSeeder extends Seeder
 
     public function run(): void
     {
-        // 3 user — masing-masing pemilik 1 proyek
+        $admin = User::where('email', 'admin@app.com')->first();
         $user1 = User::where('email', 'user1@app.com')->first();
         $user2 = User::where('email', 'user2@app.com')->first();
         $user3 = User::where('email', 'user3@app.com')->first();
 
-        // Mapping: 1 user → 1 proyek
+        // Semua proyek dimiliki oleh administrator
         $projects = [
             [
                 'code' => 'WEB',
                 'name' => 'Pengembangan Website Company Profile',
                 'description' => 'Pembangunan website company profile dengan CMS dan integrasi API.',
                 'color' => 'blue',
-                'owner' => $user1,
+                'owner' => $admin,
+                'members' => [$user1, $user2],
             ],
             [
                 'code' => 'MOB',
                 'name' => 'Aplikasi Mobile BKI',
                 'description' => 'Aplikasi mobile untuk layanan pelanggan dan tracking status.',
                 'color' => 'indigo',
-                'owner' => $user2,
+                'owner' => $admin,
+                'members' => [$user2, $user3],
             ],
             [
                 'code' => 'INF',
                 'name' => 'Infrastruktur & DevOps',
                 'description' => 'Setup CI/CD, Docker, monitoring, dan migrasi server.',
                 'color' => 'green',
-                'owner' => $user3,
+                'owner' => $admin,
+                'members' => [$user1, $user3],
             ],
         ];
 
         foreach ($projects as $projData) {
             $owner = $projData['owner'];
-            unset($projData['owner']);
+            $extraMembers = $projData['members'] ?? [];
+            unset($projData['owner'], $projData['members']);
 
             $project = Project::create([
                 ...$projData,
@@ -79,6 +83,9 @@ class ProjectSeeder extends Seeder
             ]);
 
             $project->members()->attach($owner->id, ['role' => ProjectMemberRole::Manager->value]);
+            foreach ($extraMembers as $member) {
+                $project->members()->attach($member->id, ['role' => ProjectMemberRole::Member->value]);
+            }
 
             $statuses = [];
             foreach (self::DEFAULT_STATUSES as $index => $statusData) {
